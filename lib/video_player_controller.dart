@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:screen_brightness/screen_brightness.dart';
-import 'package:subtitle/subtitle.dart';
+// import 'package:subtitle/subtitle.dart';
 import 'package:video_player/video_player.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
@@ -33,7 +33,7 @@ class VideoPlayerSreenController extends GetxController
   var subVal = 0.obs;
   RxList<MuxedStreamInfo> qualities = <MuxedStreamInfo>[].obs;
   var qualityGroupValue = "Full HD upto 1080p".obs;
-  Subtitle? currentSubtitle;
+  // Subtitle? currentSubtitle;
   var yt = YoutubeExplode();
   StreamManifest? manifest;
   var isInitialized = false.obs;
@@ -104,10 +104,10 @@ class VideoPlayerSreenController extends GetxController
     setVolumeValue.value = controller.value.volume;
     setVolumeValue.value == 0 ? isMute.value = true : isMute.value = false;
     controller.addListener(() {
-      if (caption.isNotEmpty) {
-        currentSubtitle = getSubtitleForCurrentPosition(position.value);
-        // print("---->${currentSubtitle!.data}");
-      }
+      // if (caption.isNotEmpty) {
+      //   currentSubtitle = getSubtitleForCurrentPosition(position.value);
+      //   // print("---->${currentSubtitle!.data}");
+      // }
     });
     super.onInit();
   }
@@ -164,7 +164,7 @@ class VideoPlayerSreenController extends GetxController
       var lines = srtContent.split('\n');
       // var subtitles = <String, String>{};
       // print("---->${lines.length}");
-      List<Subtitle> subtitles = [];
+      // List<Subtitle> subtitles = [];
       int index = 0;
 
       for (int i = 0; i < lines.length; i++) {
@@ -186,13 +186,13 @@ class VideoPlayerSreenController extends GetxController
           if (lines[j].isNotEmpty) {
             data += " ${lines[++i]}";
           }
-          subtitles
-              .add(Subtitle(index: index, start: start, end: end, data: data));
+          // subtitles
+              // .add(Subtitle(index: index, start: start, end: end, data: data));
           // print("---->${subtitles.length}");
         }
         // print("---->${subtitles.length}");
       }
-      return subtitles;
+      // return subtitles;
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -215,15 +215,16 @@ class VideoPlayerSreenController extends GetxController
     return Duration(hours: hours, minutes: minutes, seconds: seconds);
   }
 
-  Subtitle? getSubtitleForCurrentPosition(Duration position) {
-    // print("----->${caption.value.length}");
-    // ignore: invalid_use_of_protected_member
-    for (var subtitle in caption.value) {
-      // print("----->${subtitle.start}---${subtitle.end}");
-      if (position >= subtitle.start && position <= subtitle.end) {
-        return subtitle;
-      }
-    }
-    return null;
-  }
+  // Subtitle? getSubtitleForCurrentPosition(Duration position) {
+  //   // print("----->${caption.value.length}");
+  //   // ignore: invalid_use_of_protected_member
+  //   for (var subtitle in caption.value) {
+  //     // print("----->${subtitle.start}---${subtitle.end}");
+  //     if (position >= subtitle.start && position <= subtitle.end) {
+  //       return subtitle;
+  //     }
+  //   }
+  //   return null;
+  // }
+
 }

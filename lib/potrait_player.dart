@@ -20,8 +20,11 @@ class PotraitPlayer extends StatelessWidget {
   final Color? controlsColor;
   final Color? primaryColor;
   final Color? textColor;
+  final bool? autoPlay;
+
   const PotraitPlayer({
     super.key,
+    this.autoPlay,
     required this.link,
     required this.aspectRatio,
     this.controlsColor,
@@ -32,7 +35,7 @@ class PotraitPlayer extends StatelessWidget {
   Widget build(BuildContext context) {
     WakelockPlus.enable();
     VideoPlayerSreenController controller =
-        Get.put(VideoPlayerSreenController(link: link));
+        Get.put(VideoPlayerSreenController(link: link, autoPlay : autoPlay!));
     double width = MediaQuery.of(context).size.width;
     // File myAsset = File("packages/youtube_video_player/lib/assets/10for.svg");
     // controller.manifest =

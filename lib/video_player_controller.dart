@@ -120,8 +120,16 @@ class VideoPlayerSreenController extends GetxController
   }
 
   String getYouTubeVideoId(String url) {
-    final List data = url.split("v=");
-    return data[1];
+    final RegExp regExp = RegExp(
+        r'(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|embed|shorts|watch)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})');
+
+    final Match? match = regExp.firstMatch(url);
+
+    if (match != null && match.groupCount >= 1) {
+      return match.group(1)!; // returns the video ID
+    }
+
+    return "";
   }
 
   String formatDuration(Duration position) {
@@ -187,7 +195,7 @@ class VideoPlayerSreenController extends GetxController
             data += " ${lines[++i]}";
           }
           // subtitles
-              // .add(Subtitle(index: index, start: start, end: end, data: data));
+          // .add(Subtitle(index: index, start: start, end: end, data: data));
           // print("---->${subtitles.length}");
         }
         // print("---->${subtitles.length}");
@@ -226,5 +234,4 @@ class VideoPlayerSreenController extends GetxController
   //   }
   //   return null;
   // }
-
 }

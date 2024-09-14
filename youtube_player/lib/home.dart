@@ -21,6 +21,7 @@ class _HomeState extends State<Home> {
         children: [
           link != null
               ? PotraitPlayer(
+                  autoPlay: false,
                   link: link!,
                   aspectRatio: 16 / 9,
                   controlsColor: Colors.greenAccent,
